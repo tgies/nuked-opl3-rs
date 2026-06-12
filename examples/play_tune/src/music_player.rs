@@ -23,10 +23,10 @@
 
 use crossbeam_channel::Sender;
 
-use opl3_rs::{Opl3Device, OplRegisterFile};
+use nuked_opl3::{Opl3Device, OplRegisterFile};
 
 use crate::opl::*;
-use crate::opl_instruments::{OPL_INSTRUMENT_PIANO1, OplInstrument};
+use crate::opl_instruments::{OplInstrument, OPL_INSTRUMENT_PIANO1};
 
 const TIMER_FREQ: i64 = 100; // We will set a timer callback at 100Hz
 const SONG_LENGTH: u32 = 30; // Length of the song in seconds

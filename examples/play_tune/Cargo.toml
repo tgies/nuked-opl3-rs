@@ -5,10 +5,10 @@ edition = "2021"
 publish = false
 
 [dependencies]
-"opl3-rs" = { path = "../.." }
-"rodio" = "0.19"
-"chrono" = "0.4"
-"timer" = "0.2"
-"crossbeam-channel" = "0.5"
-"hound" = "3.5"
-"bpaf" = { version = "0.9", features = ["autocomplete"] }
+nuked-opl3 = { path = "../.." }
+rodio = "0.22"
+chrono = "0.4"
+timer = "0.2"
+crossbeam-channel = "0.5"
+hound = "3.5"
+bpaf = { version = "0.9", features = ["autocomplete"] }

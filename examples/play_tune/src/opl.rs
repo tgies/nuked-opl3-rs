@@ -26,7 +26,7 @@
 
 use std::cmp;
 
-use opl3_rs::{Opl3Device, OplRegisterFile};
+use nuked_opl3::{Opl3Device, OplRegisterFile};
 
 pub const NOTE_C: u8 = 0;
 pub const NOTE_CS: u8 = 1;

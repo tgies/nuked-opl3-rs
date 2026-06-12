@@ -26,13 +26,13 @@
 
 use std::fs::File;
 use std::io::{BufWriter, Write};
+use std::num::NonZero;
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 
 use bpaf::*;
 use chrono::Duration;
-use rodio::cpal::traits::HostTrait;
-use rodio::DeviceTrait;
+use rodio::cpal::traits::{DeviceTrait, HostTrait};
 use timer::Timer;
 
 use crate::music_player::CallbackMessage;
@@ -81,7 +81,7 @@ fn opts() -> OptionParser<Out> {
         output_wav
     })
     .to_options()
-    .descr("opl3-rs: play_tune example")
+    .descr("nuked-opl3: play_tune example")
 }
 
 fn main() {
@@ -104,6 +104,7 @@ fn main() {
         .default_output_device()
         .expect("No audio device found.");
 
+    #[allow(deprecated)]
     let device_name = audio_device.name().expect("Couldn't get adapter name.");
 
     let config = audio_device
@@ -112,12 +113,14 @@ fn main() {
 
     // We can now retrieve the sample rate. We don't really need the number of channels or sample
     // format, but it is displayed for informational purposes.
-    let sample_rate = config.sample_rate().0;
+    let sample_rate = config.sample_rate();
     let channels = config.channels() as usize;
     let sample_format = config.sample_format().to_string();
 
-    let (_stream, stream_handle) =
-        rodio::OutputStream::try_from_device(&audio_device).expect("Couldn't open rodio stream.");
+    let stream = rodio::DeviceSinkBuilder::from_device(audio_device)
+        .expect("Couldn't create audio sink builder.")
+        .open_stream()
+        .expect("Couldn't open audio stream.");
 
     println!(
         "Opened audio device: {}, sample rate: {}, channels: {}, format: {:?}",
@@ -134,11 +137,11 @@ fn main() {
 
     // Play the test note if option -t was specified, otherwise play music.
     if opts.test_note.is_some_and(|b| b) {
-        play_note::<BufWriter<File>>(sample_rate, stream_handle, wav_out.as_mut());
+        play_note::<BufWriter<File>>(sample_rate, &stream, wav_out.as_mut());
     } else {
         play_music::<BufWriter<File>>(
             sample_rate,
-            stream_handle,
+            &stream,
             wav_out.as_mut(),
             opts.debug.unwrap_or(false),
         );
@@ -151,7 +154,7 @@ fn main() {
 #[allow(dead_code)]
 fn play_note<W: Write>(
     sample_rate: u32,
-    stream_handle: rodio::OutputStreamHandle,
+    stream: &rodio::MixerDeviceSink,
     _wav_out: Option<&mut W>,
 ) {
     // Create a stereo buffer one second long. (Length = Sample rate * 2 channels)
@@ -185,11 +188,13 @@ fn play_note<W: Write>(
     }
 
     println!("Got {} samples", channel_samples.len());
-    let samples_buf = rodio::buffer::SamplesBuffer::new(2, sample_rate, channel_samples);
+    let samples_buf = rodio::buffer::SamplesBuffer::new(
+        NonZero::new(2).unwrap(),
+        NonZero::new(sample_rate).unwrap(),
+        channel_samples,
+    );
 
-    stream_handle
-        .play_raw(samples_buf)
-        .expect("Couldn't play sound");
+    stream.mixer().add(samples_buf);
 
     std::thread::sleep(std::time::Duration::from_secs(1));
 }
@@ -201,7 +206,7 @@ fn play_note<W: Write>(
 /// for the main thread or encapsulate audio samples.
 fn play_music<W: Write + std::io::Seek>(
     sample_rate: u32,
-    stream_handle: rodio::OutputStreamHandle,
+    stream: &rodio::MixerDeviceSink,
     wav_out: Option<&mut W>,
     debug: bool,
 ) {
@@ -217,9 +222,9 @@ fn play_music<W: Write + std::io::Seek>(
     // Wrap the player in an Arc<Mutex<>> so we can share it with the timer callback.
     let player_arc = Arc::new(Mutex::new(player));
 
-    // Create a rodio 'sink' to play the audio samples. Since there is only one stream, we could
-    // use the stream_handle.play_raw() method directly, but this is a more general approach.
-    let sink = rodio::Sink::try_new(&stream_handle).expect("Couldn't create sink!");
+    // Create a rodio player to play the audio samples. Since there is only one stream, we could
+    // use stream.mixer().add() directly, but this is a more general approach.
+    let sink = rodio::Player::connect_new(&stream.mixer());
 
     // Create and set up the timer. The 'Timer' crate is a bit old and unmaintained, but it seems
     // to still work well. You could use a different timer crate such as tokio::time.
@@ -293,7 +298,11 @@ fn play_music<W: Write + std::io::Seek>(
 
                 // Create a SamplesBuffer out of our received samples and append them to the sink
                 // to be played.
-                let buf = rodio::buffer::SamplesBuffer::new(2, sample_rate, channel_samples);
+                let buf = rodio::buffer::SamplesBuffer::new(
+                    NonZero::new(2).unwrap(),
+                    NonZero::new(sample_rate).unwrap(),
+                    channel_samples,
+                );
                 sink.append(buf);
             }
         }

@@ -1,0 +1,10 @@
+[package]
+name = "play_file"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+nuked-opl3 = { path = "../.." }
+hound = "3.5"
+rodio = "0.22"

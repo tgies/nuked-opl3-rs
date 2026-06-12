@@ -1,0 +1,271 @@
+# generated from ../../crystal_oscillator.vgm with:
+# python3 oply-fork/tools/vgm_to_trace.py crystal_oscillator.vgm /tmp/crystal_20k.trace --max-chip-samples 20000
+# VGM version 0x0171, data 0x111..0xf6e44
+# total samples per VGM header (44.1 kHz): 9763740
+# trace S counts are in chip-rate units (49716 Hz)
+W 080 0f
+W 088 0f
+W 090 0f
+W 180 0f
+W 188 0f
+W 190 0f
+W 081 0f
+W 089 0f
+W 091 0f
+W 181 0f
+W 189 0f
+W 191 0f
+W 082 0f
+W 08a 0f
+W 092 0f
+W 182 0f
+W 18a 0f
+W 192 0f
+W 083 0f
+W 08b 0f
+W 093 0f
+W 183 0f
+W 18b 0f
+W 193 0f
+W 084 0f
+W 08c 0f
+W 094 0f
+W 184 0f
+W 18c 0f
+W 194 0f
+W 085 0f
+W 08d 0f
+W 095 0f
+W 185 0f
+W 18d 0f
+W 195 0f
+W 0a0 00
+W 0b0 00
+W 1a0 00
+W 1b0 00
+W 0a1 00
+W 0b1 00
+W 1a1 00
+W 1b1 00
+W 0a2 00
+W 0b2 00
+W 1a2 00
+W 1b2 00
+W 0a3 00
+W 0b3 00
+W 1a3 00
+W 1b3 00
+W 0a4 00
+W 0b4 00
+W 1a4 00
+W 1b4 00
+W 0a5 00
+W 0b5 00
+W 1a5 00
+W 1b5 00
+W 0a6 00
+W 0b6 00
+W 1a6 00
+W 1b6 00
+W 0a7 00
+W 0b7 00
+W 1a7 00
+W 1b7 00
+W 0a8 00
+W 0b8 00
+W 1a8 00
+W 1b8 00
+W 104 00
+W 105 01
+W 0bd 00
+W 104 00
+W 0b0 00
+W 0b3 00
+W 104 00
+W 020 83
+W 023 44
+W 028 83
+W 02b 44
+W 040 0b
+W 043 0b
+W 048 0b
+W 04b 0b
+W 060 13
+W 063 13
+W 068 13
+W 06b 13
+W 080 ff
+W 083 ff
+W 088 ff
+W 08b ff
+W 0c0 3d
+W 0c3 3d
+W 0e0 02
+W 0e3 01
+W 0e8 02
+W 0eb 01
+W 0a0 d7
+W 0b0 21
+W 0a3 54
+W 0b3 22
+W 0a1 5e
+W 0b1 01
+W 0a4 63
+W 0b4 01
+S 828
+W 0a0 d8
+W 0b0 21
+W 0a3 55
+W 0b3 22
+S 829
+W 0a0 d8
+W 0b0 21
+W 0a3 55
+W 0b3 22
+S 828
+W 0a0 d8
+W 0b0 21
+W 0a3 53
+W 0b3 22
+S 829
+W 0a0 d8
+W 0b0 21
+W 0a3 50
+W 0b3 22
+S 829
+W 0a0 d8
+W 0b0 21
+W 0a3 4e
+W 0b3 22
+S 828
+W 0a0 dd
+W 0b0 21
+W 0a3 54
+W 0b3 22
+S 829
+W 0a0 e1
+W 0b0 21
+W 0a3 5b
+W 0b3 22
+S 828
+W 0a0 e6
+W 0b0 21
+W 0a3 65
+W 0b3 22
+S 829
+W 0a0 eb
+W 0b0 21
+W 0a3 6e
+W 0b3 22
+S 829
+W 0a0 ef
+W 0b0 21
+W 0a3 76
+W 0b3 22
+S 828
+W 0a0 f5
+W 0b0 21
+W 0a3 7d
+W 0b3 22
+S 829
+W 0a0 fa
+W 0b0 21
+W 0a3 82
+W 0b3 22
+S 828
+W 0a0 00
+W 0b0 22
+W 0a3 86
+W 0b3 22
+S 829
+W 0a0 06
+W 0b0 22
+W 0a3 8a
+W 0b3 22
+S 829
+W 0a0 0d
+W 0b0 22
+W 0a3 91
+W 0b3 22
+S 828
+W 0a0 13
+W 0b0 22
+W 0a3 99
+W 0b3 22
+S 829
+W 0a0 19
+W 0b0 22
+W 0a3 a3
+W 0b3 22
+S 828
+W 104 00
+W 0b1 01
+W 0b4 01
+W 104 00
+W 021 83
+W 024 44
+W 029 83
+W 02c 44
+W 041 0f
+W 044 0f
+W 049 0f
+W 04c 0f
+W 061 13
+W 064 13
+W 069 13
+W 06c 13
+W 081 ff
+W 084 ff
+W 089 ff
+W 08c ff
+W 0c1 1d
+W 0c4 2d
+W 0e1 02
+W 0e4 01
+W 0e9 02
+W 0ec 01
+W 0a0 20
+W 0b0 22
+W 0a3 ad
+W 0b3 22
+W 0a1 d3
+W 0b1 21
+W 0a4 55
+W 0b4 22
+S 829
+W 0a0 26
+W 0b0 22
+W 0a3 5b
+W 0b3 25
+S 829
+W 0a0 2c
+W 0b0 22
+W 0a3 5f
+W 0b3 25
+S 828
+W 0a0 31
+W 0b0 22
+W 0a3 62
+W 0b3 25
+S 829
+W 0a0 37
+W 0b0 22
+W 0a3 64
+W 0b3 25
+S 828
+W 0a0 3c
+W 0b0 22
+W 0a3 66
+W 0b3 25
+S 829
+W 0a0 42
+W 0b0 22
+W 0a3 6a
+W 0b3 25
+W 0a1 d9
+W 0b1 21
+W 0a4 5c
+W 0b4 22
+S 829
+W 0a0 47
+E

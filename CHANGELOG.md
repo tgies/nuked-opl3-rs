@@ -1,37 +1,26 @@
-v0.2.3
-------
-Released 2026/04/28
+# Changelog
 
-* Fixed Opl3Device timer register writes to update timer reload presets. (Thanks TheAllTinker)
+All notable changes to this project will be documented in this file.
 
-v0.2.2
-------
-Released 2025/03/01
+The format is based on [Keep a Changelog](https://keepachangelog.com/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
 
-* Fixed symbol names when building on macos (Thanks einstein95)
+## [0.1.0] - 2026-06-12
 
-v0.2.1
-------
+Initial release. Pure Rust port derived from [Nuked-OPL3](https://github.com/nukeykt/Nuked-OPL3) v1.8.
 
-* Yanked due to build issues
+### Added
 
-v0.2.0
-------
-Released 2024/07/06
+- Pure Rust port of the Nuked-OPL3 1.8 chip core — no C code or FFI required at
+  runtime.
+- Performance optimizations (silent-regime shortcut, pre-shifted EXPROM, cached EG
+  rates, flat output-array indices) that make the Rust core faster than the upstream
+  C implementation while remaining sample-accurate.
+- `Opl3Device` wrapper providing a full device-level OPL3 implementation with status
+  register, address/data registers, and timers.
+- `stereo-ext` cargo feature for Nuked-OPL3's stereo extension pan registers.
+- `c-reference-tests` cargo feature for sample-accurate parity testing against the
+  vendored C source.
+- VGM, IMF, and DRO playback examples.
 
-* Added stats() function to Opl3Device for retrieving statistics.
-* Added an option to the example `play_tune` to save the output as a wav via `hound`.
-* Added a `buffered` parameter to `write_register`. This is technically a breaking change,
-  but nobody's using this yet, so...
-
-v0.1.2
-------
-Released 2024/06/30
-
-* Fixed build and provided a working example of music playback.
-
-v0.1.0, v0.1.1
---------------
-Released 2024/06/29, Yanked 2024/06/30
-
-* Broken. Less said the better. Was still figuring out how to publish an FFI crate.
+[0.1.0]: https://github.com/tgies/nuked-opl3-rs/releases/tag/v0.1.0

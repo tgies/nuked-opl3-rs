@@ -1,22 +1,32 @@
 [package]
-name = "opl3-rs"
-description = "Rust bindings for Nuked-OPL3, a Yamaha OPL3 FM-synthesis chip emulation library."
-authors = ["Daniel Balsom", "Nuke.YKT"]
-license = "LGPL-2.1"
-version = "0.2.3"
+name = "nuked-opl3"
+version = "0.1.0"
 edition = "2021"
-repository = "https://github.com/dbalsom/opl3-rs"
+rust-version = "1.62"
+authors = ["Tony Gies", "Nuke.YKT", "Daniel Balsom"]
+description = "Pure Rust port of the Nuked-OPL3 Yamaha YMF262 (OPL3) FM synthesis chip emulator"
+license = "LGPL-2.1-or-later"
+repository = "https://github.com/tgies/nuked-opl3-rs"
+readme = "README.md"
 keywords = ["OPL", "emulation", "audio", "synthesizer", "retro"]
 categories = ["multimedia::audio", "emulators"]
 build = "build.rs"
+exclude = [
+    "tests/",
+    "tools/",
+    "examples/",
+    ".claude/",
+    ".github/",
+]
 
-[build-dependencies]
-bindgen = "0.69"
-cc = "1.0"
-heck = "0.5.0"
+[features]
+c-reference-tests = ["dep:cc"]
+stereo-ext = []
 
 [dependencies]
-thiserror = "1.0"
+
+[build-dependencies]
+cc = { version = "1.2", optional = true }
 
 [workspace]
 members = [

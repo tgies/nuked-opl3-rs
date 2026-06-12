@@ -1,60 +1,33 @@
-use std::env;
-use std::path::PathBuf;
-
-use bindgen::callbacks::{EnumVariantValue, ParseCallbacks};
-use heck::ToUpperCamelCase;
-
-#[derive(Debug)]
-struct RenameCallbacks;
-
-impl ParseCallbacks for RenameCallbacks {
-    fn enum_variant_name(
-        &self,
-        _enum_name: Option<&str>,
-        original_variant_name: &str,
-        _variant_value: EnumVariantValue,
-    ) -> Option<String> {
-        Some(original_variant_name.to_upper_camel_case())
-    }
-
-    fn item_name(&self, original_item_name: &str) -> Option<String> {
-        Some(original_item_name.to_upper_camel_case())
-    }
-}
-
 fn main() {
-    // The path to the header file
-    let lib_path = "./src/nuked-opl3/";
-    let header_path = "./src/nuked-opl3/opl3.h";
+    #[cfg(feature = "c-reference-tests")]
+    {
+        use std::env;
+        use std::path::PathBuf;
 
-    // Tell cargo to rerun build.rs when the C library changes
-    println!("cargo:rerun-if-changed={}", lib_path);
+        println!("cargo:rerun-if-changed=src/nuked-opl3/opl3.c");
+        println!("cargo:rerun-if-changed=src/nuked-opl3/opl3.h");
+        println!("cargo:rerun-if-env-changed=OPL3_RS_C_REF_ROOT");
 
-    let bindings_result = bindgen::Builder::default()
-        .no_copy(".*")
-        .header(header_path)
-        .allowlist_function("OPL3.*")
-        .parse_callbacks(Box::new(RenameCallbacks))
-        .generate();
+        let stereo_ext = env::var_os("CARGO_FEATURE_STEREO_EXT").is_some();
+        let target = env::var("TARGET").expect("TARGET must be set");
+        let c_ref_root = env::var_os("OPL3_RS_C_REF_ROOT")
+            .map(PathBuf::from)
+            .unwrap_or_else(|| PathBuf::from("src/nuked-opl3"));
+        let c_ref_source = c_ref_root.join("opl3.c");
 
-    match bindings_result {
-        Ok(bindings) => {
-            // Write the bindings to the $OUT_DIR/bindings.rs file
-            let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
-            if let Err(e) = bindings.write_to_file(out_path.join("bindings.rs")) {
-                panic!("Failed to write bindings: {:?}", e);
-            }
+        let mut build = cc::Build::new();
+        build.include(&c_ref_root).file(&c_ref_source).opt_level(2);
+        if !target.contains("msvc") {
+            build.std("c99");
         }
-        Err(e) => panic!("Failed to generate bindings: {:?}", e),
+        if stereo_ext {
+            build.define("OPL_ENABLE_STEREOEXT", "1");
+            build.define("M_PI", "3.14159265358979323846");
+        }
+        build.compile("opl3_ref");
+
+        if stereo_ext && !target.contains("windows") {
+            println!("cargo:rustc-link-lib=m");
+        }
     }
-
-    // Compile the C library
-    cc::Build::new()
-        .file("./src/nuked-opl3/opl3.c")
-        .compile("opl3");
-
-    // Link the compiled library
-    println!("cargo:rustc-link-lib=static=opl3");
-
-    println!("cargo:warning=Ran build.rs...");
 }

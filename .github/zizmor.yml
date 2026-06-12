@@ -1,0 +1,9 @@
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        # dtolnay/rust-toolchain is intentionally branch-tracked rather than
+        # SHA-pinned per the action's own documentation; the action's runtime
+        # behavior is determined by rustup, not by which commit of the action
+        # source is checked out.
+        dtolnay/rust-toolchain: ref-pin

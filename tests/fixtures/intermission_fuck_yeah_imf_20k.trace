@@ -1,0 +1,418 @@
+# generated from ../oply-fork/tests/Intermission Fuck Yeah.imf
+# IMF rate: 700 Hz; trace S counts are in chip-rate units (49716 Hz)
+# stopped after at least 20000 chip-rate samples
+W 000 00
+W 041 02
+W 021 f0
+W 061 f1
+W 081 f3
+W 0e1 00
+W 044 00
+W 024 f2
+W 064 f1
+W 084 f4
+W 0e4 00
+W 0c1 01
+W 044 0f
+W 0a1 23
+W 0b1 2e
+W 042 0a
+W 022 20
+W 062 65
+W 082 17
+W 0e2 00
+W 045 00
+W 025 a0
+W 065 74
+W 085 27
+W 0e5 00
+W 0c2 0b
+W 045 12
+W 0a2 34
+W 0b2 2f
+W 045 0a
+W 048 0a
+W 028 20
+W 068 65
+W 088 17
+W 0e8 00
+W 04b 00
+W 02b a0
+W 06b 74
+W 08b 27
+W 0eb 00
+W 0c3 0b
+W 04b 12
+W 0a3 23
+W 0b3 32
+W 049 52
+W 029 30
+W 069 f0
+W 089 f3
+W 0e9 00
+W 04c 00
+W 02c 30
+W 06c f1
+W 08c f4
+W 0ec 01
+W 0c4 0a
+W 04c 0f
+W 0a4 23
+W 0b4 2e
+W 04a 96
+W 02a 30
+W 06a f0
+W 08a ff
+W 0ea 00
+W 04d 00
+W 02d 31
+W 06d f1
+W 08d f8
+W 0ed 00
+W 0c5 0a
+W 04d 0b
+W 0a5 23
+W 0b5 2a
+W 050 00
+W 030 00
+W 070 fa
+W 090 47
+W 0f0 00
+W 053 00
+W 033 00
+W 073 f9
+W 093 06
+W 0f3 00
+W 0c6 06
+W 053 12
+W 0a6 db
+W 0b6 26
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 72
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 72
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+W 0b6 06
+W 0b5 0a
+W 0b4 0e
+W 0b1 0e
+W 0a1 34
+W 0b1 2f
+W 0a4 34
+W 0b4 2f
+W 0a5 23
+W 0b5 2a
+W 030 0c
+W 070 78
+W 090 5e
+W 0f0 02
+W 053 80
+W 033 0a
+W 073 8a
+W 093 2b
+W 0f3 03
+W 0c6 0f
+W 053 12
+W 0a6 65
+W 0b6 3b
+S 72
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 72
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 72
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+W 0b6 1b
+W 0b5 0a
+W 0b4 0f
+W 0b1 0f
+W 0a1 cf
+W 0b1 2f
+W 0a4 cf
+W 0b4 2f
+W 0a5 23
+W 0b5 2a
+W 030 06
+W 070 aa
+W 090 ff
+W 0f0 00
+W 053 00
+W 033 00
+W 073 f7
+W 093 fa
+W 0f3 00
+W 0c6 0e
+W 053 12
+W 0a6 b2
+W 0b6 2a
+S 72
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+S 71
+E
