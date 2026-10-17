@@ -20,6 +20,8 @@ exclude = [
 ]
 
 [features]
+default = ["std"]
+std = []
 c-reference-tests = ["dep:cc"]
 stereo-ext = []
 
