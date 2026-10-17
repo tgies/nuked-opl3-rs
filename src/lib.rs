@@ -3,6 +3,7 @@
 //
 // Nuked OPL3 Copyright (C) 2013-2020 Nuke.YKT
 // Copyright (C) 2026 Tony Gies (Rust port)
+#![cfg_attr(not(feature = "std"), no_std)]
 #![warn(missing_docs)]
 #![doc = include_str!("./docs.md")]
 
@@ -69,8 +70,9 @@ pub enum OplError {
     MutexLockFailed,
 }
 
-impl std::fmt::Display for OplError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+// `::core`: the crate's own `core` module shadows the `core` crate here.
+impl ::core::fmt::Display for OplError {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
         match self {
             OplError::BufferUndersized => write!(f, "Buffer slice provided was too small"),
             OplError::BufferMismatch => write!(f, "Buffer slices must be equal in length"),
@@ -80,6 +82,7 @@ impl std::fmt::Display for OplError {
     }
 }
 
+#[cfg(feature = "std")]
 impl std::error::Error for OplError {}
 
 #[derive(Debug)]
@@ -243,7 +246,9 @@ impl Opl3Device {
         let samples_f = (usec / 1_000_000.0 * self.sample_rate as f64) + self.samples_fpart;
 
         let samples = samples_f as usize;
-        self.samples_fpart = samples_f - samples_f.floor();
+        // `samples` is `samples_f` truncated, which for a non-negative
+        // `samples_f` is its floor (`f64::floor` needs `std`).
+        self.samples_fpart = samples_f - samples as f64;
 
         samples
     }

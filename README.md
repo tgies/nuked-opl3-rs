@@ -56,6 +56,7 @@ only need the synthesis engine.
 
 | Feature | Description |
 |---------|-------------|
+| `std` (default) | Implements `std::error::Error` for `OplError`. Without it the crate is `no_std` and needs no allocator, for bare-metal and embedded targets |
 | `stereo-ext` | Enables stereo extension pan registers (equivalent to `OPL_ENABLE_STEREOEXT=1` in upstream) |
 | `c-reference-tests` | Builds the vendored C Nuked-OPL3 source for bit-exact parity tests and benchmarks |
 

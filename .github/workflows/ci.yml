@@ -38,6 +38,24 @@ jobs:
       - name: Test (c-reference-tests,stereo-ext)
         run: cargo test --verbose --features c-reference-tests,stereo-ext
 
+  no-std:
+    name: no_std build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: thumbv7em-none-eabi
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+      # A target with no `std` at all, so anything that reaches for it
+      # fails to build rather than quietly linking it.
+      - name: Build (no default features)
+        run: cargo build --verbose --no-default-features --target thumbv7em-none-eabi
+      - name: Build (no default features, stereo-ext)
+        run: cargo build --verbose --no-default-features --features stereo-ext --target thumbv7em-none-eabi
+
   clippy:
     name: Clippy lints
     runs-on: ubuntu-latest
@@ -103,7 +121,7 @@ jobs:
 
   release-plz-release:
     name: Release-plz release
-    needs: [test, clippy, format, docs, deny, msrv]
+    needs: [test, no-std, clippy, format, docs, deny, msrv]
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required to write release tags, changelogs, and GitHub releases
@@ -138,7 +156,7 @@ jobs:
 
   release-plz-pr:
     name: Release-plz PR
-    needs: [test, clippy, format, docs, deny, msrv]
+    needs: [test, no-std, clippy, format, docs, deny, msrv]
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required to push release commits and release branch updates
