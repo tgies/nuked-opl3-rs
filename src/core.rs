@@ -1388,7 +1388,7 @@ impl Chip {
 
 fn decoded_slot(high: usize, regm: u8) -> Option<usize> {
     let decoded = AD_SLOT[(regm & 0x1f) as usize];
-    (decoded >= 0).then_some(18 * high + decoded as usize)
+    (decoded >= 0).then(|| 18 * high + decoded as usize)
 }
 
 fn clip_sample(sample: i32) -> i16 {
