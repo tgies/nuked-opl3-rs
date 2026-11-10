@@ -805,6 +805,15 @@ mod tests {
         assert_eq!(device.stats().samples_generated, 0);
     }
 
+    #[test]
+    fn writes_to_unused_slot_registers_are_ignored() {
+        let mut chip = Opl3Chip::new(44_100);
+
+        for reg in 0..=0x1ff {
+            chip.write_register(reg, 0xff);
+        }
+    }
+
     #[cfg(feature = "c-reference-tests")]
     #[path = "c_reference_tests.rs"]
     mod c_reference;
